@@ -1,19 +1,33 @@
-def firstAndlastOccurence(arr, target):
-    l, r = 0, len(arr) - 1
-    res = [-1,-1]
+def searchRange(nums, target):
+        def findFirst(nums,target):
+            l, r = 0 , len(nums)-1
+            res = -1
 
-    while l <= r:
-        mid = (l+r)//2
+            while l <= r:
+                mid = (l + r)//2
 
-        if arr[mid] == target:
-            res.append(mid)
-            l = mid + 1
-            r = mid - 1
-        elif arr[mid] < target:
-            l = mid + 1
-        else:
-            r = mid - 1
+                if nums[mid] == target:
+                    res = mid
+                    r = mid - 1
+                elif nums[mid] < target:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            return res
+        def findLast(nums,target):
+            l, r = 0 , len(nums)-1
+            res = -1
 
-    return res
+            while l <= r:
+                mid = (l + r)//2
 
-print(firstAndlastOccurence([1, 3, 3, 3, 5, 7], 3))
+                if nums[mid] == target:
+                    res = mid
+                    l = mid + 1
+                elif nums[mid] < target:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            return res
+        return [findFirst(nums,target), findLast(nums,target)]
+print(searchRange([1, 3, 3, 3, 5, 7], 3))
